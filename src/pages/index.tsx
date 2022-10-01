@@ -86,7 +86,7 @@ const Home: NextPage = () => {
     <div className='bg-[#F8F9FA] min-h-screen dark:bg-black relative'>
 
       <Title>Lenderson Macedo</Title>
-        <div className={'max-w-5xl mx-auto min-h-screen bg-white px-8 md:px-16  py-12 bg-white dark:bg-[#18181B] relative'}>
+        <div className={'max-w-5xl mx-auto min-h-screen bg-white px-8 md:px-16  py-6 md:py-12 bg-white dark:bg-[#18181B] relative'}>
           <header>
             <nav className={'flex gap-4 md:gap-8 justify-end pr-2'}>
               <div
@@ -106,7 +106,7 @@ const Home: NextPage = () => {
               </div>
             </nav>
           </header>
-          <main className={'mt-12 select-none'}>
+          <main className={'mt-4 md:mt-12 select-none'}>
             <section className='relative select-none' id='head'>
               <div className='flex flex-col'>
                 <div className='relative w-[100px] h-[105px]'>
