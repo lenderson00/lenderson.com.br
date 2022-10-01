@@ -1,14 +1,14 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image'
+import React from 'react'
 
-const Newsletter = () => {
-	const userCount = 1020
-	const formID = 542151
-	return (
+const Newsletter: React.FC = () => {
+  const userCount = 1020
+
+  return (
 		<div className={'grid place-content-center min-h-screen max-w-xl mx-auto px-4 '}>
 			<div className={'flex justify-center items-center'}>
-				<div className='relative w-[150px] h-[155px] '>
-					<Image src={'/profile.png'} layout={'fill'}/>
+				<div className='relative w-[150px] h-[155px] select-none '>
+					<Image src={'/profile.png'} layout={'fill'} alt={'Foto do Lenderson Macedo'}/>
 				</div>
 			</div>
 
@@ -20,16 +20,15 @@ const Newsletter = () => {
 					Se una a mais de {userCount} pessoas:
 				</p>
 			</div>
-			<NewsletterForm action={`https://app.convertkit.com/forms/{formID}/subscriptions`} />
+			<NewsletterForm action={'https://dashboard.mailerlite.com/forms/167385/67769275868251363/share'} />
 		</div>
-	)
+  )
 }
 
 export default Newsletter
 
 const NewsletterForm: React.FC<{ action: string }> = ({ action }) => {
-
-	return (
+  return (
 		<form action={action} method="post" className="flex flex-col flex-wrap w-full mx-auto max-w-[400px]">
 			<div className="px-2 grow-[9999] mt-8 ">
 				<div className="group relative">
@@ -65,5 +64,5 @@ const NewsletterForm: React.FC<{ action: string }> = ({ action }) => {
 				</button>
 			</div>
 		</form>
-	)
+  )
 }

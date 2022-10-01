@@ -1,14 +1,14 @@
 import clsx from 'clsx'
-import NextDocument, {Html, Head, Main, NextScript, DocumentContext} from 'next/document'
+import NextDocument, { Html, Head, Main, NextScript, DocumentContext } from 'next/dist/pages/_document'
 
 export default class Document extends NextDocument {
-	static async getInitialProps(ctx: DocumentContext ) {
-		const initialProps = await NextDocument.getInitialProps(ctx)
-		return { ...initialProps }
-	}
+  static async getInitialProps (ctx: DocumentContext): Promise<any> {
+    const initialProps = await NextDocument.getInitialProps(ctx)
+    return { ...initialProps }
+  }
 
-	render() {
-		return (
+  render (): JSX.Element {
+    return (
 			<Html lang="en" className="dark [--scroll-mt:9.875rem] lg:[--scroll-mt:6.3125rem]">
 				<Head>
 					<meta name="apple-mobile-web-app-title" content="Lenderson Macedo" />
@@ -17,7 +17,7 @@ export default class Document extends NextDocument {
 					<meta name="theme-color" content="#2083A7" />
 					<script
 						dangerouslySetInnerHTML={{
-							__html: `
+						  __html: `
                 try {
                   if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                     document.documentElement.classList.add('dark')
@@ -26,7 +26,7 @@ export default class Document extends NextDocument {
                     document.documentElement.classList.remove('dark')
                   }
                 } catch (_) {}
-              `,
+                `
 						}}
 					/>
 				</Head>
@@ -38,6 +38,6 @@ export default class Document extends NextDocument {
 				<script> </script>
 				</body>
 			</Html>
-		)
-	}
+    )
+  }
 }

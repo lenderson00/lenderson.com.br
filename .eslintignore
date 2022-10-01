@@ -7,3 +7,4 @@ node_modules
 public
 next-env.d.ts
 jest.config.ts
+.eslintrc.js
