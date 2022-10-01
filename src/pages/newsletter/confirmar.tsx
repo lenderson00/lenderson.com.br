@@ -2,8 +2,12 @@ import Image from 'next/image'
 import React from 'react'
 import { ThemeToggle } from '../../component/toggle-theme'
 import { Title } from '../../component/Title'
+import { useRouter } from 'next/router'
 
-const Confirmar: React.FC<{ email: string }> = ({ email }) => {
+const Confirmar: React.FC = () => {
+  const router = useRouter()
+
+  const { email } = router.query
   return (
     <div className={'bg-white dark:bg-[#18181B] '}>
       <Title>Confirme sua Inscrição na Newsletter</Title>
