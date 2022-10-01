@@ -1,6 +1,6 @@
-import clsx from 'clsx'
+// @ts-ignore
 import { useIsomorphicLayoutEffect } from 'hook/useIsomorphicLayoutEffect'
-import { Fragment, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import create from 'zustand'
 
 const useSetting = create((set) => ({
@@ -22,21 +22,9 @@ function update() {
 	})
 }
 
-let settings = [
-	{
-		value: 'light',
-		label: 'Light',
-		icon: SunIcon,
-	},
-	{
-		value: 'dark',
-		label: 'Dark',
-		icon: MoonIcon,
-	},
 
-]
-
-function SunIcon({ selected, ...props }: any) {
+// @ts-nocheck
+function SunIcon({ selected }: any) {
 	return (
 	<>	{selected &&
 		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +42,7 @@ function SunIcon({ selected, ...props }: any) {
 	)
 }
 
-function MoonIcon({ selected, ...props }: any) {
+function MoonIcon({ selected  }: any) {
 
 	return (
 		<>{selected &&
