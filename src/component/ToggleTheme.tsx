@@ -1,11 +1,11 @@
-// @ts-ignore
+
 import { useIsomorphicLayoutEffect } from 'hook/useIsomorphicLayoutEffect'
 import { useEffect, useRef } from 'react'
 import create from 'zustand'
 
-const useSetting = create((set) => ({
+const useSetting = create((set: any) => ({
 	setting: 'none',
-	setSetting: (setting:any) => set({ setting }),
+	setSetting: (setting: any) => set({ setting }),
 }))
 
 function update() {
@@ -54,8 +54,8 @@ function MoonIcon({ selected  }: any) {
 }
 
 function useTheme() {
-	// @ts-ignore
-	let { setting, setSetting } = useSetting()
+
+	const { setting, setSetting } = useSetting()
 	let initial = useRef(true)
 
 	useIsomorphicLayoutEffect(() => {
@@ -114,9 +114,11 @@ export function ThemeToggle() {
 
 	return (
 			<>
+				{/*//@ts-ignore  */}
         <div className="dark:hidden select-none cursor-pointer p-2" onClick={() => setSetting('dark')}>
           <SunIcon selected={setting === 'light'} />
         </div>
+				{/*//@ts-ignore  */}
 				<div className="hidden dark:inline select-none cursor-pointer p-2" onClick={() => setSetting('light')}>
           <MoonIcon selected={setting === 'dark'} />
         </div>
