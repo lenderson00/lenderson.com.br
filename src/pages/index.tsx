@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { ThemeToggle } from '../component/toggle-theme'
 import React, { Fragment, useState } from 'react'
 import { Title } from '../component/Title'
-import { MaterialGratuito } from '../component/Modal'
 import { Dialog, Transition } from '@headlessui/react'
 import { linktree } from '../linktree'
 
@@ -85,7 +84,7 @@ const Home: NextPage = () => {
   return (
     <>
     <div className='bg-[#F8F9FA] min-h-screen dark:bg-black relative'>
-      <MaterialGratuito isOpen={isOpen} setIsOpen={setIsOpen}/>
+
       <Title>Lenderson Macedo</Title>
         <div className={'max-w-5xl mx-auto min-h-screen bg-white px-8 md:px-16  py-12 bg-white dark:bg-[#18181B] relative'}>
           <header>
