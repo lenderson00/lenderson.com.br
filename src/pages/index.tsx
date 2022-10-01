@@ -2,7 +2,11 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ThemeToggle } from '../component/toggle-theme'
-import React from 'react'
+import React, { Fragment, useState } from 'react'
+import { Title } from '../component/Title'
+import { MaterialGratuito } from '../component/Modal'
+import { Dialog, Transition } from '@headlessui/react'
+import { linktree } from '../linktree'
 
 const InstagramIcon: React.FC = () => {
   return (
@@ -73,19 +77,30 @@ const Links = [
 ]
 
 const Home: NextPage = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  function closeModal (): void {
+    setIsOpen(false)
+  }
+
   return (
+    <>
     <div className='bg-[#F8F9FA] min-h-screen dark:bg-black relative'>
+      <MaterialGratuito isOpen={isOpen} setIsOpen={setIsOpen}/>
+      <Title>Lenderson Macedo</Title>
         <div className={'max-w-5xl mx-auto min-h-screen bg-white px-8 md:px-16  py-12 bg-white dark:bg-[#18181B] relative'}>
           <header>
             <nav className={'flex gap-4 md:gap-8 justify-end pr-2'}>
-              <div className={'select-none relative flex justify-center items-center font-bold text-[#8794A6] dark:text-white gap-4 px-4 py-2 cursor-pointer group'}>
+              <div
+                onClick={() => setIsOpen(true)}
+                className={'select-none relative flex justify-center items-center font-bold text-[#8794A6] dark:text-white gap-4 px-4 py-2 cursor-pointer group'}>
                 <HoverEffect />
-                <svg className={'fill-[#8794A6] dark:fill-white'} width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M23.2917 0.966797C21.8375 0.268555 20.3833 0 18.9292 0C14.3125 0 9.6875 2.68039 5.07083 2.68039C3.91292 2.68039 2.75542 2.50852 1.5975 2.08957C1.46708 2.04102 1.33583 2.01953 1.20958 2.01953C0.5625 2.01953 0 2.59445 0 3.38594V17.0242C0 17.5665 0.271875 18.077 0.707917 18.2866C2.16083 18.9836 3.61875 19.25 5.07083 19.25C9.6875 19.25 14.3083 16.5696 18.9292 16.5696C20.0871 16.5696 21.2446 16.7415 22.4025 17.1604C22.5337 17.2088 22.665 17.2303 22.7916 17.2303C23.4375 17.2305 24 16.6547 24 15.8598V2.22922C24 1.68652 23.7292 1.17648 23.2917 0.966797ZM22 12.375C20.7242 12.375 19.6604 13.3005 19.3983 14.5355C19.24 14.5299 19.0892 14.5074 18.9283 14.5074C16.3438 14.5074 13.8617 15.2279 11.4575 15.9245C9.22083 16.573 7.10417 17.1875 5.07083 17.1875C4.80463 17.1875 4.55958 17.1407 4.30417 17.1189C4.3125 17.0285 4.33333 16.9383 4.33333 16.8438C4.33333 15.4425 3.31375 14.2991 2 14.1286V6.875C3.27583 6.875 4.33958 5.94945 4.60167 4.71453C4.75833 4.71797 4.9125 4.74375 5.07083 4.74375C7.65542 4.74375 10.1375 4.02316 12.5417 3.32664C14.7792 2.67609 16.8958 2.0625 18.9292 2.0625C19.1954 2.0625 19.4404 2.10929 19.6958 2.13112C19.6875 2.22277 19.6667 2.31172 19.6667 2.40625C19.6667 3.80746 20.6863 4.95086 22 5.12145V12.375Z" />
-                  <path opacity="0.4" d="M19.6667 2.40625C19.6667 2.31193 19.6854 2.22286 19.6948 2.13112C19.4375 2.10934 19.1958 2.0625 18.9292 2.0625C16.8967 2.0625 14.7817 2.67609 12.5417 3.32535C10.1417 4.02187 7.65833 4.74375 5.07083 4.74375C4.90987 4.74375 4.75908 4.72117 4.60083 4.71564C4.34167 5.95117 3.27625 6.875 2 6.875V14.1281C3.31375 14.3 4.33333 15.443 4.33333 16.8438C4.33333 16.9381 4.31456 17.0271 4.3052 17.1189C4.5625 17.1402 4.80417 17.1875 5.07083 17.1875C7.10333 17.1875 9.21833 16.5739 11.4583 15.9246C13.86 15.2281 16.3417 14.5075 18.9292 14.5075C19.09 14.5075 19.2409 14.5301 19.3992 14.5357C19.6583 13.2988 20.725 12.375 22 12.375V5.12187C20.6875 4.95 19.6667 3.80703 19.6667 2.40625ZM12 13.75C10.1592 13.75 8.70417 11.9032 8.70417 9.625C8.70417 7.3468 10.1967 5.5 12 5.5C13.8033 5.5 15.2958 7.3468 15.2958 9.625C15.2958 11.9023 13.8417 13.75 12 13.75Z" />
+
+                <svg className={'fill-[#8794A6] dark:fill-white'} width="31" height="24" viewBox="0 0 31 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.95219 12.6891L8.23634 6.44062C9.53701 5.14687 11.2436 4.5 12.9454 4.5C14.6473 4.5 16.3567 5.14688 17.6578 6.44109C18.9609 7.73438 19.569 9.43125 19.6114 11.1281C19.6115 12.8241 18.9609 14.52 17.6593 15.8142L16.9908 16.4789C16.1054 16.4228 15.2781 16.0686 14.6454 15.4392C14.4967 15.2914 14.3694 15.1286 14.2503 14.9616L15.5259 13.6931C16.2147 13.0083 16.5942 12.0975 16.5942 11.1286C16.5942 10.1597 16.2147 9.24891 15.5259 8.56406C14.8359 7.875 13.9213 7.5 12.9454 7.5C11.9319 7.5 11.055 7.875 10.3667 8.56406L4.08541 14.8078C3.39618 15.4927 3.01715 16.4034 3.01715 17.3723C3.01715 18.3412 3.39651 19.252 4.08541 19.9369C4.77558 20.5828 5.69015 21 6.66601 21C7.64045 21 8.55644 20.6228 9.24519 19.9378L12.1016 17.0977C12.2326 17.2549 12.3648 17.4117 12.5132 17.5592C13.1128 18.1554 13.8044 18.5984 14.5361 18.9195L11.3785 22.0592C10.0744 23.3531 8.37258 24 6.66601 24C4.96038 24 3.25475 23.3531 1.95314 22.0589C-0.650563 19.4719 -0.650563 15.2766 1.95219 12.6891Z"/>
+                  <path opacity="0.4" d="M28.2197 11.3109L21.9356 17.5594C20.6345 18.8531 18.9326 19.5 17.226 19.5C15.5195 19.5 13.8148 18.8531 12.5136 17.5589C11.2582 16.3106 10.6081 14.6878 10.5638 13.0519C10.5129 11.2969 11.1635 9.525 12.5117 8.18906L13.1812 7.52344C14.0665 7.57955 14.8939 7.93373 15.5265 8.56312C15.6752 8.71097 15.8025 8.87372 15.9217 9.04078L14.6473 10.3078C13.9586 10.9927 13.5791 11.9034 13.5791 12.8723C13.5791 13.8412 13.9585 14.752 14.6473 15.4369C15.3356 16.0828 16.2502 16.5 17.226 16.5C18.2005 16.5 19.1165 16.1227 19.8052 15.4378L26.0894 9.18937C26.7786 8.50453 27.1576 7.59375 27.1576 6.62484C27.1576 5.65594 26.7347 4.74844 26.0842 4.06219C25.3959 3.37734 24.4813 3 23.5055 3C22.531 3 21.615 3.3772 20.9263 4.06219L18.0699 6.90234C17.9389 6.74508 17.8066 6.58828 17.6583 6.44081C17.0587 5.84456 16.3671 5.40159 15.6354 5.0805L18.7931 1.94081C20.097 0.646875 21.7989 0 23.5055 0C25.2111 0 26.9167 0.646875 28.2179 1.94109C29.4959 3.21188 30.146 4.86984 30.1691 6.53484C30.195 8.25938 29.5445 9.99375 28.2197 11.3109Z" />
                 </svg>
 
-                Material Gratúito
+                Links úteis
               </div>
               <div className={'flex justify-center items-center select-none'}>
                 <ThemeToggle />
@@ -138,18 +153,19 @@ const Home: NextPage = () => {
                   Links.map((item) => {
                     return (
                       <Link href={item.url} key={item.title}>
-                        <div className={'relative px-6 cursor-pointer py-6 rounded-lg group'} >
-                          <HoverEffect />
-                          <div className={'flex items-center gap-4'}>
-                            <item.icon />
-                            <h2 className={'font-bold text-2xl dark:text-white group-hover:text-[#1C607D] dark:group-hover:text-[#59FFF5]'}>{item.title}</h2>
+                        <a target={item.title.toLowerCase() === 'newsletter' ? '_parent' : '_blank'}>
+                          <div className={'relative px-6 cursor-pointer py-6 rounded-lg group border border-slate-500/20 animated hover:border-[#B6C1C9] md:border-transparent dark:md:border-transparent md:bg-transparent '} >
+                            <HoverEffect />
+                            <div className={'flex items-center gap-4'}>
+                              <item.icon />
+                              <h2 className={'font-bold text-2xl dark:text-white group-hover:text-[#1C607D] dark:group-hover:text-[#59FFF5]'}>{item.title}</h2>
+                            </div>
+                            <p className={'mt-2'}>
+                              {item.content}
+                            </p>
                           </div>
-                          <p className={'mt-2'}>
-                            {item.content}
-                          </p>
-                        </div>
+                        </a>
                       </Link>
-
                     )
                   })
                 }
@@ -184,6 +200,72 @@ const Home: NextPage = () => {
           </footer>
         </div>
     </div>
+
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-2xl font-bold leading-6 text-gray-900 flex justify-between items-center"
+                  >
+                    Material Gratúito
+                    <div className={'cursor-pointer group'} onClick={closeModal}>
+                      <svg className={'fill-slate-300 animated group-hover:fill-[#1C607D]'} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                          <path d="M15.7547 8.20312C15.3152 7.76367 14.6034 7.76367 14.1638 8.20312L12 10.4109L9.75469 8.20312C9.31523 7.76367 8.60344 7.76367 8.16375 8.20312C7.72406 8.64258 7.7243 9.35438 8.16375 9.79406L10.3683 11.9986L8.20312 14.2031C7.76367 14.6426 7.76367 15.3544 8.20312 15.7941C8.64248 16.2334 9.35438 16.2338 9.79406 15.7941L12 13.5891L14.2045 15.7936C14.6439 16.233 15.3558 16.2333 15.7955 15.7936C16.2349 15.3541 16.2349 14.6423 15.7955 14.2027L13.5909 11.9981L15.7955 9.79359C16.2328 9.35625 16.2328 8.64375 15.7547 8.20312ZM12 0C5.37188 0 0 5.37188 0 12C0 18.6281 5.37188 24 12 24C18.6281 24 24 18.6281 24 12C24 5.37188 18.6281 0 12 0ZM12 21.75C6.62344 21.75 2.25 17.3761 2.25 12C2.25 6.62391 6.62344 2.25 12 2.25C17.3766 2.25 21.75 6.62391 21.75 12C21.75 17.3761 17.3766 21.75 12 21.75Z" />
+                      </svg>
+
+                    </div>
+                  </Dialog.Title>
+                  <div className="mt-4">
+                    <p className="text-sm text-gray-500 max-w-xs">
+                      Separei uma lista de materiais gratúitos que pode te ajudar, faça bom proveito!
+                    </p>
+                  </div>
+
+                  <div className="mt-4 flex flex-col gap-2">
+                    {
+                      linktree.map((item) => {
+                        return (<div key={item.title} className={'relative group px-6 py-4 cursor-pointer border border-slate-200 animated rounded-lg hover:border-[#B6C1C9]'}>
+                          <HoverEffect />
+                          <h2 className={'text-xl font-bold text-slate-400 animated group-hover:text-[#1C607D]'}>
+
+                          {item.title}
+                          </h2>
+                        </div>)
+                      })
+                    }
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+    </>
   )
 }
 
