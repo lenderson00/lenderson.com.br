@@ -28,7 +28,7 @@ const Index: React.FC = () => {
 					Se una a mais de <span className={'font-bold dark:text-[#59FFF5] text-[#59AFFF]'}>{userCount} </span> pessoas:
 				</p>
 			</div>
-			<NewsletterForm action={'https://dashboard.mailerlite.com/forms/167385/67769275868251363/share'} />
+			<NewsletterForm action={'https://app.convertkit.com/forms/3663229/subscriptions'} />
 		</div>
     </div>
   )
