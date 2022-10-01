@@ -5,7 +5,7 @@ import create from 'zustand'
 
 const useSetting = create((set) => ({
 	setting: 'none',
-	setSetting: (setting) => set({ setting }),
+	setSetting: (setting:any) => set({ setting }),
 }))
 
 function update() {
@@ -66,6 +66,7 @@ function MoonIcon({ selected, ...props }: any) {
 }
 
 function useTheme() {
+	// @ts-ignore
 	let { setting, setSetting } = useSetting()
 	let initial = useRef(true)
 
