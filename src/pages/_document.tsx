@@ -28,11 +28,14 @@ export default class Document extends NextDocument {
                   } else {
                     document.documentElement.classList.remove('dark')
                   }
-                  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    localStorage.setItem('theme', 'dark')
-                  } else {
-                    localStorage.setItem('theme', 'light')
+                  if(localStorage.getItem('theme') !== 'dark' | 'light') {
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                      localStorage.setItem('theme', 'dark')
+                    } else {
+                      localStorage.setItem('theme', 'light')
+                    }
                   }
+
                 } catch (_) {}
                 `
 						}}
