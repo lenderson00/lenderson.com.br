@@ -1,0 +1,9 @@
+.husky
+.vscode
+coverage
+dist
+documentation
+node_modules
+public
+next-env.d.ts
+jest.config.ts
